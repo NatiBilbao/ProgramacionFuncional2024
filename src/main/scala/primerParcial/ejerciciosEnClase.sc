@@ -38,6 +38,7 @@ fact(4)
 def fibo(n:Int): Int = if(n<=1) 1 else fibo(n-1) + fibo(n-2)
 fibo(9)
 
+//FOF
 //Realizar la suma de enteros
 // def sumInts(a: Int, b: Int) = ???
 
@@ -65,5 +66,45 @@ def sumCubes(a: Int, b: Int): Int = {
 }
 
 sumCubes(2,4)
+
+//Solucion sin def cubes
+
+def sumCube(a: Int, b: Int): Int = {
+  def inner(i : Int, acc : Int) : Int = if (i > b) acc else inner(i + 1, acc + i*i*i)
+  inner(a, 0)
+}
+
+//Realizar la factorial de un número
+//def factorial(n:Int) = ???
+
+//Solución sin recursividad de cola
+def factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
+
+//Solución con recursividad de cola
+
+def factori(n: Int) = {
+  def inner(i:Int, acc : Int) : Int = if(i == 0) acc else inner(i-1, acc*i)
+  inner(n, 1)
+}
+
+//Realizar la suma de los factoriales entre a y b
+//def sumFacts(a: Int, b:Int) = ???
+
+def factTR(n:Int):Int = {
+  def inner(i:Int, acc:Int):Int = if (i==0) acc else inner(i-1, i*acc)
+  inner(n, 1)
+}
+
+def sumFacts(a: Int, b: Int): Int = {
+  def inner(i : Int, acc : Int) : Int = if (i > b) acc else inner(i + 1, acc + factTR(i))
+  inner(a, 0)
+}
+
+
+
+
+
+
+
 
 
