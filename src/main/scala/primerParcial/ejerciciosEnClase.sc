@@ -58,6 +58,12 @@ sumInt(3,7)
 //Realizar la suma de los cubos
 //def sumCubes(a: Int, b: Int) = ???
 
-def cubos()
+def cube(x : Int): Int = x*x*x
+def sumCubes(a: Int, b: Int): Int = {
+  def inner(i : Int, acc : Int) : Int = if (i > b) acc else inner(i + 1, acc + cube(i))
+  inner(a, 0)
+}
+
+sumCubes(2,4)
 
 
