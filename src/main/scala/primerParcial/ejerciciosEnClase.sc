@@ -100,6 +100,48 @@ def sumFacts(a: Int, b: Int): Int = {
   inner(a, 0)
 }
 
+def sumF(a: Int, b: Int, f: Int => Int) = {
+  def inner(i: Int, acc: Int) : Int = if(i > b) acc else inner(i+1, acc + f(i))
+  inner(a, 0)
+}
+
+//Realizar la suma de enteros entre a y b usando sumF
+// def sumEven(a: Int, b: Int) = ???
+
+//Solucion
+def sumEven(a: Int, b: Int) = sumF(a,b, x => if(x%2 == 0) x else 0)
+
+//Realizar la funcion para todos los producctos entre a y b
+//def proF(a: Int, b: Int, f: Int => Int) = ???
+
+def prodF(a:Int, b:Int, f:Int=> Int) = {
+  def inner(i : Int, acc : Int) : Int = if(i>b) acc else inner(i+1, acc*f(i))
+  inner(a, 1)
+}
+
+//Realizar la factorial de un número usando prodF
+//def anotherFactorial(a: Int) = ???
+
+//Solución
+
+def anotherFactorial(n: Int) = prodF(1, n, x=>x)
+
+//Realizar una función que factorice las funciones sumF y prodF
+//def megaFunc() ???
+
+//Solución
+def megaFunc(a: Int, b: Int, f: Int => Int, op: (Int, Int)=>Int, acc0:Int) ={
+  def inner(i: Int, acc:Int) : Int = if(i > b) acc else inner(i+1, op(f(i), acc))
+
+  inner(a, acc0)
+}
+
+//Realizar una función
+//def yetAnotherFactorial (a: Int) = ???
+
+//Solución
+def yetAnotherFactorial (n: Int) = megaFunc(1, n, x=>x, (x,y)=>x*y, acc0 = 1) //Idenity = x=>x se puede usar las dos son igual
+
 
 
 
