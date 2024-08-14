@@ -10,8 +10,9 @@ def pascal(a: Int, b: Int): Int = if (a == 0 || a == b) 1 else pascal(a - 1, b -
 //Exercise 2: Parentheses Balancing
 
 def balance(chars: List[Char]): Boolean = {
-
-  def balanceHelper(chars: List[Char], openCount: Int): Boolean = if (chars.isEmpty) openCount == 0 else if (openCount < 0) false
+  def balanceHelper(chars: List[Char], openCount: Int): Boolean = {
+    if (chars.isEmpty) openCount == 0
+    else if (openCount < 0) false
     else {
       val newCount = chars.head match {
         case '(' => openCount + 1
@@ -20,8 +21,11 @@ def balance(chars: List[Char]): Boolean = {
       }
       balanceHelper(chars.tail, newCount)
     }
+  }
+
   balanceHelper(chars, 0)
 }
+
 
 //Exercise 3: Counting Change
 
@@ -31,3 +35,31 @@ def countChange(dinero: Int, monedas: List[Int]): Int = {
     else countWays(dinero - monedas.head, monedas) + countWays(dinero, monedas.tail)
   countWays(dinero, monedas)
 }
+
+//Solución tarea
+
+//Ejercicio 1
+
+def pascales(c: Int, r: Int) : Int = if(c == 0 || c == r) 1 else pascales(c, r-1) + pascales(c-1, r-1)
+
+//Ejercicio 2
+
+def balances(chars: List[Char]) : Boolean = {
+  def inner(chars: List[Char], acc : Int) : Boolean =
+    if(chars.isEmpty) acc == 0
+    else if (acc < 0) false
+    else if (chars.head == '(' ) inner(chars.tail, acc + 1)
+    else if (chars.head == ')' ) inner(chars.tail, acc - 1)
+    else inner(chars.tail, acc)
+
+  inner(chars, acc = 0)
+}
+
+//Ejercicio 3
+
+def countChanges(money: Int, coins: List[Int]) : Int = {
+  if (coins.isEmpty || money < 0) 0
+  else if (money == 0) 1
+  else countChanges(money - coins.head, coins) + countChanges(money, coins.tail)
+}
+
