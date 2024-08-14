@@ -58,8 +58,9 @@ def balances(chars: List[Char]) : Boolean = {
 //Ejercicio 3
 
 def countChanges(money: Int, coins: List[Int]) : Int = {
-  if (coins.isEmpty || money < 0) 0
-  else if (money == 0) 1
+  if (money == 0) 1
+  else if (coins.isEmpty || money < 0) 0
   else countChanges(money - coins.head, coins) + countChanges(money, coins.tail)
 }
+
 
