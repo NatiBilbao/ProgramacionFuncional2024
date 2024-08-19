@@ -142,11 +142,66 @@ def megaFunc(a: Int, b: Int, f: Int => Int, op: (Int, Int)=>Int, acc0:Int) ={
 //Solución
 def yetAnotherFactorial (n: Int) = megaFunc(1, n, x=>x, (x,y)=>x*y, acc0 = 1) //Idenity = x=>x se puede usar las dos son igual
 
+//Realizar la composición de funciones
 
+def f(x : Int) = 2*x
+def g(x : Int) = x*x
 
+def comp(f: Int => Int, g : Int => Int)(x : Int) : Int = f(g(x))
+comp(f,g)(3)
 
+//Solución 2
 
+def compo(g: Int => Int, f: Int => Int) : Int => Int = (n: Int) => g(f(n))
 
+//Solución más pequeña
 
+def compos(g: Int => Int, f: Int => Int)(n: Int) = g(f(n))
+def fs(n: Int) = n-1
+def gs(n: Int) = n*n
 
+def h : Int => Int = compos(g,f)
 
+//Realizar la suma, resta y multiplicación de funciones
+// def join(op)(f,g)
+
+def join(op : (Int, Int) => Int)(f : Int => Int, g : Int => Int)(x : Int) = op(f(x), g(x))
+join(_+_)(f,g)(3)
+
+//Realizar la función para saber si es positiva usar de ejemplo -> (-1000,1000)
+// def esPositivo(f: Int => Int) : Boolean
+
+def esPositivo(f: Int => Int) : Boolean ={
+  def inner(i: Int) : Boolean = if(i == 1001) true else if(f(i) < 0) false else inner(i + 1)
+  inner(-1000)
+}
+
+//Solución más compacta
+
+def sonPositivos(f: Int => Int) : Boolean ={
+  def inner(i: Int) : Boolean = i == 1001 || (if(f(i) < 0) false else inner(i + 1))
+  inner(-1000)
+}
+ //Soluición mas compacta 2
+
+def sonPosi(f: Int => Int) : Boolean ={
+  def inner(i: Int) : Boolean = i == 1001 || ((f(i) >= 0) && inner(i + 1))
+  inner(-1000)
+}
+
+//Realizar una función para todos los resultados de f para todos los valores entre min y max cumple el predicado p
+def forall(p: Int => Boolean, min: Int, max: Int)(f: Int => Int): Boolean = (min to max).forall(value => p(f(value)))
+
+//Solución
+
+def foralls(p: Int => Boolean)(f: Int => Int) = {
+  def inner(i: Int) : Boolean = i == 1001 || (p(f(i))) && inner(i + 1)
+    inner(-1000)
+}
+
+//Realizar la función existe entre un predicado y una función
+
+def exist(p: Int => Boolean)(f: Int => Int) = {
+  def inner(i: Int) : Boolean = i == 1001 || (p(i)) && inner(i + 1)
+  inner(-1000)
+}
