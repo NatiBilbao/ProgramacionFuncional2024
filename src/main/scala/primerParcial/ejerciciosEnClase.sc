@@ -1,3 +1,5 @@
+import scala.collection.immutable.Set
+
 //Realizar una funcion para:
 //def and(b1: Boolean, b2:Boolean) = ???
 //def or(b1: Boolean, b2:Boolean) = ???
@@ -205,3 +207,7 @@ def exist(p: Int => Boolean)(f: Int => Int) = {
   def inner(i: Int) : Boolean = i == 1001 || (p(i)) && inner(i + 1)
   inner(-1000)
 }
+
+//Realizar el complemento
+
+// def complement(s: Set) : Set = !s(_)
