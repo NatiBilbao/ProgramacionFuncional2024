@@ -36,3 +36,54 @@ def eval(e: Expr) : Int = e match {
 }
 
 eval(Sum(Number(3), Number(4)))
+
+//Solución
+
+abstract class Expr
+
+case class Number(n: Int) extends Expr
+
+case class Sum(a: Expr, b: Expr) extends Expr
+
+case class Mul(a: Expr, b: Expr) extends Expr
+
+def eval(e: Expr) : Int = e match {
+  case Number(n) => n
+  case Sum(a,b) => eval(a) + eval(b)
+  case Mul(a, b) => eval(a) * eval(b)
+
+}
+
+def show(e: Expr) : String = {
+  def whithPar(x : Expr) : String = x match {
+    case Sum(_, _) => "(" + show(x) + ")"
+    case _ => show(x)
+  }
+  e match {
+    case Number(n) => n.toString
+    case Sum(a, b) => show(a) + "+" + show(b)
+    case Mul(a, b) => whithPar(a) + "*" + whithPar(b)
+  }
+}
+
+show(Mul(Sum(Number(3), Number(4)), Sum(Number(5), Number(6))))
+
+//Realizar una clase abstracta figura geometrica y hacer sub clases cuadrado, rectangulo, circulo y
+// afuera de estas clases hacer un método llamado areas que toma una figura geometrica y devuelve el area en double
+
+//Solución
+abstract class FigGeometrica
+
+case class Cuadrado(l: Double) extends FigGeometrica
+case class Rectangulo(a: Double, b: Double) extends FigGeometrica
+case class Circulo(r: Double)
+
+val c = Cuadrado(4.5)
+c.l
+
+def area(f: FigGeometrica) = f match {
+  case Cuadrado(l) => l * l
+  case Rectangulo(a, b) => (b * a)
+  case Circulo(r) => r * r*Math.PI
+}
+
