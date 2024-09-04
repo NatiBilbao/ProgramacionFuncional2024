@@ -92,6 +92,44 @@ def area(f: FigGeometrica) = f match {
 def insertSort(l : List[Int]) : List[Int] = {
   def insert(e: Int, l1: List[Int]) : List[Int] = l1 match {
     case Nil => List(e)
-    case
+    case h :: t => if(e < h) e :: l1 else h :: insert(e, t)
+  }
+  l match {
+    case Nil => Nil
+    case h :: t => insert(h, insertSort(t))
   }
 }
+
+//Realizar una funcion para encontrar el elemento más grande de una lista de ints, el ultimo y el penultimo
+
+//Solución
+
+def max(l : List[Int]) : Int = l match {
+  case Nil => throw new UnsupportedOperationException()
+  case List(e) => e
+  case h :: h1 :: t => if(h < h1) max(h1 :: t) else max(h :: t)
+}
+
+def last[T](l : List[T]) : T = l match {
+  case Nil => throw new UnsupportedOperationException()
+  case List(e) => e
+  case _ :: t => last(t)
+}
+
+def penultimate[T](l : List[T]) : T = l match {
+  case Nil | List(_)=> throw new UnsupportedOperationException()
+  case List(a,_) => a
+  case _ :: t => penultimate(t)
+}
+
+//Realizar la inversa
+
+def reverse[T](l : List[T]) : List[T] = {
+  def inner(l1 : List[T], l2 : List[T]) : List[T] = l1 match {
+    case Nil => l2
+    case h :: t => inner(t, h :: l2)
+  }
+
+  inner(l, Nil)
+}
+
