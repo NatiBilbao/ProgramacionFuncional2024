@@ -40,3 +40,35 @@ e match {
   case _ => -1
 }
 
+val l : List[Int] = List(1,2,3)
+val l1 = List(List(1,2), List(3,4), "YAAAAAA")
+
+//Listas vacias
+
+val l2 = List()
+val l3 = Nil
+
+//Lista con cons ::
+
+val l4 = 1 :: Nil
+val l5 = Nil.::(3).::(2).::(1)
+
+l.head
+l.tail
+l.size
+l.isEmpty
+
+l match {
+  case List(x) => x
+  case List(a, b) => a + b
+  case Nil => 1
+  case l : List[Boolean] => l.head
+  case h :: _ => h
+  case x :: y :: List(a, b) :: z => x
+}
+
+
+
+
+
+

@@ -87,3 +87,11 @@ def area(f: FigGeometrica) = f match {
   case Circulo(r) => r * r*Math.PI
 }
 
+//Realizar una función insertSort que toma una lista de Int para ordenarla
+
+def insertSort(l : List[Int]) : List[Int] = {
+  def insert(e: Int, l1: List[Int]) : List[Int] = l1 match {
+    case Nil => List(e)
+    case
+  }
+}
