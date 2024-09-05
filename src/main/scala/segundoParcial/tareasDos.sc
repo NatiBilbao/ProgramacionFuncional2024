@@ -57,5 +57,10 @@ class Fraction(x: Int, y: Int) {
   def ge(o: Fraction) = !lt(0)
 }
 
-//Realizar size recursivo
- def size [T](l : List[T]) = ???
+//Realizar size recursivo:
+// def size [T](l : List[T]) = ???
+
+def size[T](l: List[T]): Int = l match {
+  case Nil => 0
+  case _ :: t => 1 + size(t)
+}
