@@ -12,6 +12,7 @@ class NonEmptySet(e : Int, left : Set, right : Set) extends Set {
 }
 
 //Pattern Maching
+
 //Completar las siguiente funciones:
 // 1) Completar eval
 // 2) def show(e:Expr) : String
@@ -133,3 +134,43 @@ def reverse[T](l : List[T]) : List[T] = {
   inner(l, Nil)
 }
 
+//Realizar init recursivo
+//def init[T](l : List[T]) = ???
+
+def init[T](l : List[T]) : List[T] = {
+  def inner (l1 : List[T], acc : List[T]) : List[T] = l1 match {
+    case List(_) => acc
+    case h :: t => inner(t, h :: acc)
+  }
+
+  l match {
+    case Nil => throw new UnsupportedOperationException()
+    case _ => inner(l, Nil).reverse
+  }
+}
+
+//Realizar la concatenación de dos listas
+// def concat[T](l1 : List[T], l2 : List[T]) = ???
+
+def concat[T](l1 : List[T], l2 : List[T]) = {
+  def inner(l1t : List[T], acc : List[T]) : List[T] = l1t match {
+    case Nil => acc
+    case h :: t => inner(t, h :: acc)
+  }
+
+  inner(l1.reverse, l2)
+
+}
+
+//Realizar una función flatter que toma como lista una any y devuelve una lista de anys conventirlas en una sola lista
+//def flatten(l : List[Any]) : List[Any] = ???
+
+def flatten(l : List[Any]) : List[Any] = {
+  def inner(l1 : List[Any], acc : List[Any]) : List[Any] = l1 match {
+    case Nil => acc.reverse
+    case (h : List[_]) :: t => inner(t, h.reverse ::: acc)
+    case h :: t => inner(t, h :: acc)
+  }
+
+  inner(l, Nil)
+}

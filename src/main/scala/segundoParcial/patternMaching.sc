@@ -67,7 +67,37 @@ l match {
   case x :: y :: List(a, b) :: z => x
 }
 
+def max(l : List[Int]) : Int = l match {
+  case Nil => throw new UnsupportedOperationException()
+  case List(e) => e
+  case h :: h1 :: t => if(h < h1) max(h1 :: t) else max(h :: t)
+}
 
+def last[T](l : List[T]) : T = l match {
+  case Nil => throw new UnsupportedOperationException()
+  case List(e) => e
+  case _ :: t => last(t)
+}
+
+def penultimate[T](l : List[T]) : T = l match {
+  case Nil | List(_)=> throw new UnsupportedOperationException()
+  case List(a,_) => a
+  case _ :: t => penultimate(t)
+}
+
+//Realizar la inversa
+
+def reverse[T](l : List[T]) : List[T] = {
+  def inner(l1 : List[T], l2 : List[T]) : List[T] = l1 match {
+    case Nil => l2
+    case h :: t => inner(t, h :: l2)
+  }
+
+  inner(l, Nil)
+}
+
+val l = List(1,2,3)
+l.reverse
 
 
 
