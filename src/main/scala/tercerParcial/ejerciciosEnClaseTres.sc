@@ -13,6 +13,3 @@ def myFilter[T](l : List[T], f : T => Boolean) = {
 
 def myFilterNot[T](l : List[T], f : T => Boolean) = myFilter(l, !f(_))
 
-//Realizar un función mySpan que toma como párametros l y f y devuelve una tupla
-
-def mySpan[T](l : List[T], f : T => Boolean) : (List[T], List[T]) = ???
