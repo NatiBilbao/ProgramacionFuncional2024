@@ -35,3 +35,12 @@ def unique2[T](l : List[T]) = {
   }
   inner(l, Nil)
 }
+
+def sum(l : List[Int]) : Int = {
+  def inner(l1 : List[Int], acc : Int) : Int = l1 match {
+    case Nil => acc
+    case h :: t => inner(t, h + acc)
+  }
+  inner(l, acc = 0)
+}
+
